@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense &amp; Budget Visualizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- ── Top bar ── -->
+        <header class="top-bar">
+            <div class="brand">
+                <span class="brand-icon" aria-hidden="true">◈</span>
+                <span class="brand-name">FinTrack</span>
+            </div>
+            <button id="themeBtn" class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-toggle__icon">☽</span>
+                <span class="theme-toggle__label">Dark Mode</span>
+            </button>
+        </header>
+
+        <h1>Expense &amp; Budget Visualizer</h1>
+        <p class="subtitle">Track, categorise and visualise your spending in real-time.</p>
+
+        <!-- ── Balance card ── -->
+        <div class="balance-card">
+            <div class="balance-card__label">Total Spending</div>
+            <p id="total" class="balance-card__amount">Rp 0</p>
+            <div class="balance-card__decoration" aria-hidden="true"></div>
+        </div>
+
+        <!-- ── Form ── -->
+        <section class="form-section" aria-label="Add transaction">
+            <div class="form-section__title">New Transaction</div>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="itemName" class="input-label">Item Name</label>
+                    <input type="text" id="itemName" placeholder="e.g. Lunch at café" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label for="amount" class="input-label">Amount (Rp)</label>
+                    <input type="number" id="amount" placeholder="0" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="category" class="input-label">Category</label>
+                    <select id="category">
+                        <option value="">Choose Category</option>
+                        <option value="Food">🍜 Food</option>
+                        <option value="Transport">🚌 Transport</option>
+                        <option value="Fun">🎮 Fun</option>
+                    </select>
+                </div>
+                <div class="input-group input-group--action">
+                    <label class="input-label" aria-hidden="true">&nbsp;</label>
+                    <button id="addBtn" class="btn btn--primary">
+                        <span class="btn__icon" aria-hidden="true">＋</span>
+                        Add Transaction
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Two-column grid: transactions + chart ── -->
+        <div class="dashboard-grid">
+
+            <!-- Transactions -->
+            <section class="transaction-section" aria-label="Transactions">
+                <div class="section-header">
+                    <h2>Transactions</h2>
+                    <button id="sortBtn" class="btn btn--ghost btn--sm">
+                        <span aria-hidden="true">↕</span> Sort by Amount
+                    </button>
+                </div>
+                <div id="transactionList" class="transaction-list" role="list"></div>
+            </section>
+
+            <!-- Chart -->
+            <section class="chart-section" aria-label="Expense chart">
+                <div class="section-header">
+                    <h2>Expense Chart</h2>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="expenseChart"></canvas>
+                </div>
+            </section>
+
+        </div><!-- /.dashboard-grid -->
+
+    </div><!-- /.container -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

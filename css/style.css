@@ -1,0 +1,704 @@
+/* ============================================================
+   FINTRACK – Premium Expense & Budget Visualizer
+   Design system: Inter font · Soft-card glassmorphism accents
+   ============================================================ */
+
+/* ── 1. Custom properties (light theme) ── */
+:root {
+    /* Brand */
+    --clr-primary:        #6366f1;   /* indigo-500 */
+    --clr-primary-light:  #818cf8;   /* indigo-400 */
+    --clr-primary-dark:   #4f46e5;   /* indigo-600 */
+    --clr-primary-glow:   rgba(99, 102, 241, 0.18);
+
+    --clr-accent:         #06b6d4;   /* cyan-500 */
+    --clr-success:        #10b981;   /* emerald-500 */
+    --clr-danger:         #ef4444;   /* red-500 */
+    --clr-danger-soft:    #fef2f2;
+    --clr-warning:        #f59e0b;
+
+    /* Neutrals */
+    --clr-bg:             #f1f5fb;
+    --clr-surface:        #ffffff;
+    --clr-surface-2:      #f8faff;
+    --clr-border:         #e2e8f0;
+    --clr-text:           #0f172a;
+    --clr-text-muted:     #64748b;
+    --clr-text-subtle:    #94a3b8;
+
+    /* Shadows */
+    --shadow-xs:  0 1px 2px rgba(15,23,42,.04);
+    --shadow-sm:  0 2px 8px  rgba(15,23,42,.06), 0 1px 2px rgba(15,23,42,.04);
+    --shadow-md:  0 4px 20px rgba(15,23,42,.08), 0 2px 6px  rgba(15,23,42,.05);
+    --shadow-lg:  0 8px 40px rgba(15,23,42,.10), 0 2px 8px  rgba(15,23,42,.06);
+    --shadow-primary: 0 4px 20px rgba(99,102,241,.30);
+
+    /* Radii */
+    --r-sm:   8px;
+    --r-md:  14px;
+    --r-lg:  20px;
+    --r-xl:  28px;
+    --r-pill: 9999px;
+
+    /* Spacing */
+    --gap-sm: 12px;
+    --gap-md: 20px;
+    --gap-lg: 28px;
+
+    /* Transitions */
+    --tr-fast:   0.15s cubic-bezier(.4,0,.2,1);
+    --tr-normal: 0.25s cubic-bezier(.4,0,.2,1);
+    --tr-spring: 0.35s cubic-bezier(.34,1.56,.64,1);
+
+    /* Typography */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ── 2. Dark theme ── */
+body.dark {
+    --clr-bg:           #0b0f1a;
+    --clr-surface:      #131929;
+    --clr-surface-2:    #1a2235;
+    --clr-border:       #1e2d45;
+    --clr-text:         #e2e8f0;
+    --clr-text-muted:   #94a3b8;
+    --clr-text-subtle:  #4b5a72;
+    --clr-danger-soft:  #2d1515;
+
+    --shadow-sm:  0 2px 8px  rgba(0,0,0,.30);
+    --shadow-md:  0 4px 20px rgba(0,0,0,.40);
+    --shadow-lg:  0 8px 40px rgba(0,0,0,.55);
+}
+
+/* ── 3. Reset & base ── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--clr-text);
+    background-color: var(--clr-bg);
+    min-height: 100vh;
+    padding: 28px 16px 60px;
+    transition: background-color var(--tr-normal), color var(--tr-normal);
+}
+
+/* Subtle background pattern */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, rgba(99,102,241,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 90% 110%, rgba(6,182,212,.10) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.dark::before {
+    background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, rgba(99,102,241,.20) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 90% 110%, rgba(6,182,212,.14) 0%, transparent 55%);
+}
+
+/* ── 4. Layout container ── */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+/* ── 5. Top bar ── */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-icon {
+    font-size: 22px;
+    color: var(--clr-primary);
+    line-height: 1;
+    filter: drop-shadow(0 0 6px var(--clr-primary-glow));
+}
+
+.brand-name {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--clr-text);
+}
+
+/* ── 6. Page title ── */
+h1 {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.7px;
+    line-height: 1.15;
+    text-align: center;
+    color: var(--clr-text);
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--clr-text-muted);
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 36px;
+}
+
+/* ── 7. Section headings ── */
+h2 {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    color: var(--clr-text);
+}
+
+/* ── 8. Balance card ── */
+.balance-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--clr-primary-dark) 0%, var(--clr-primary) 50%, var(--clr-accent) 100%);
+    color: #fff;
+    padding: 36px 40px;
+    border-radius: var(--r-xl);
+    margin-bottom: var(--gap-lg);
+    box-shadow: var(--shadow-primary);
+    text-align: center;
+}
+
+.balance-card__label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 10px;
+}
+
+.balance-card__amount {
+    /* keep id="total" intact — JS writes here */
+    font-size: clamp(36px, 6vw, 52px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: #fff;         /* override legacy #total rule */
+    line-height: 1;
+    margin: 0;
+}
+
+/* Decorative circles */
+.balance-card__decoration {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,.14);
+    top: -80px;
+    right: -60px;
+    pointer-events: none;
+}
+
+.balance-card__decoration::after {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,.10);
+    top: 60px;
+    left: 60px;
+}
+
+/* ── 9. Form section ── */
+.form-section {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-lg);
+    padding: 28px 28px 24px;
+    margin-bottom: var(--gap-lg);
+    box-shadow: var(--shadow-md);
+    transition: background-color var(--tr-normal), border-color var(--tr-normal);
+}
+
+.form-section__title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--clr-primary);
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-sm);
+    align-items: flex-end;
+}
+
+/* Input groups */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 160px;
+}
+
+.input-group--action {
+    flex: 0 0 auto;
+    min-width: 170px;
+}
+
+.input-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--clr-text-muted);
+    letter-spacing: 0.3px;
+}
+
+.form-section input,
+.form-section select {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--clr-text);
+    background: var(--clr-surface-2);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--r-sm);
+    outline: none;
+    transition:
+        border-color var(--tr-fast),
+        background-color var(--tr-fast),
+        box-shadow var(--tr-fast);
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Custom select arrow */
+.form-section select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%2364748b' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.form-section input:focus,
+.form-section select:focus {
+    border-color: var(--clr-primary);
+    background: var(--clr-surface);
+    box-shadow: 0 0 0 3px var(--clr-primary-glow);
+}
+
+.form-section input::placeholder {
+    color: var(--clr-text-subtle);
+    font-weight: 400;
+}
+
+/* Remove number spinner */
+.form-section input[type="number"]::-webkit-inner-spin-button,
+.form-section input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+/* ── 10. Buttons ── */
+button {
+    font-family: var(--font-sans);
+    cursor: pointer;
+    border: none;
+    transition:
+        background-color var(--tr-fast),
+        color var(--tr-fast),
+        box-shadow var(--tr-fast),
+        transform var(--tr-spring),
+        opacity var(--tr-fast);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: var(--r-sm);
+    white-space: nowrap;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn--primary {
+    background: linear-gradient(135deg, var(--clr-primary-dark), var(--clr-primary));
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(99,102,241,.35);
+    width: 100%;
+}
+
+.btn--primary:hover {
+    background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-light));
+    box-shadow: 0 4px 18px rgba(99,102,241,.45);
+    transform: translateY(-1px);
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--clr-text-muted);
+    border: 1.5px solid var(--clr-border);
+}
+
+.btn--ghost:hover {
+    background: var(--clr-surface-2);
+    border-color: var(--clr-primary-light);
+    color: var(--clr-primary);
+    transform: translateY(-1px);
+}
+
+.btn--sm {
+    padding: 8px 14px;
+    font-size: 13px;
+    gap: 5px;
+}
+
+.btn__icon {
+    font-size: 17px;
+    line-height: 1;
+    font-weight: 300;
+}
+
+/* Theme toggle */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--clr-text-muted);
+    background: var(--clr-surface);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--r-pill);
+    box-shadow: var(--shadow-xs);
+}
+
+.theme-toggle:hover {
+    color: var(--clr-primary);
+    border-color: var(--clr-primary-light);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.theme-toggle__icon {
+    font-size: 15px;
+}
+
+/* ── 11. Dashboard grid ── */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-lg);
+    align-items: start;
+}
+
+/* ── 12. Shared section card styles ── */
+.transaction-section,
+.chart-section {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-lg);
+    padding: 24px 24px 20px;
+    box-shadow: var(--shadow-md);
+    transition: background-color var(--tr-normal), border-color var(--tr-normal);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+/* ── 13. Transaction list ── */
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 480px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+/* Scrollbar styling */
+.transaction-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.transaction-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.transaction-list::-webkit-scrollbar-thumb {
+    background: var(--clr-border);
+    border-radius: var(--r-pill);
+}
+
+.transaction-list::-webkit-scrollbar-thumb:hover {
+    background: var(--clr-text-subtle);
+}
+
+/* Transaction items (generated by JS — keep class names) */
+.transaction-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--clr-surface-2);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-md);
+    padding: 16px 18px;
+    position: relative;
+    transition:
+        box-shadow var(--tr-fast),
+        transform var(--tr-fast),
+        border-color var(--tr-fast),
+        background-color var(--tr-fast);
+}
+
+.transaction-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14%;
+    height: 72%;
+    width: 3px;
+    background: var(--clr-primary-light);
+    border-radius: 0 3px 3px 0;
+    opacity: 0;
+    transition: opacity var(--tr-fast);
+}
+
+.transaction-item:hover {
+    border-color: var(--clr-primary-light);
+    box-shadow: var(--shadow-sm), 0 0 0 1px var(--clr-primary-glow);
+    transform: translateY(-1px);
+}
+
+.transaction-item:hover::before {
+    opacity: 1;
+}
+
+.transaction-item h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--clr-text);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 80px; /* make room for delete btn */
+}
+
+.transaction-item p {
+    font-size: 13px;
+    color: var(--clr-text-muted);
+    font-weight: 500;
+}
+
+/* First <p> after h3 = amount */
+.transaction-item p:first-of-type {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--clr-primary);
+}
+
+/* Delete button (rendered by JS, lives inside .transaction-item) */
+.transaction-item button {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 5px 11px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--clr-danger);
+    background: transparent;
+    border: 1.5px solid rgba(239,68,68,.30);
+    border-radius: var(--r-sm);
+    transition:
+        background-color var(--tr-fast),
+        border-color var(--tr-fast),
+        transform var(--tr-spring);
+}
+
+.transaction-item button:hover {
+    background: var(--clr-danger);
+    border-color: var(--clr-danger);
+    color: #fff;
+    transform: scale(1.06);
+}
+
+/* High-spending flag (JS adds this class) */
+.high-spending {
+    border-left: 3px solid var(--clr-danger) !important;
+    background: var(--clr-danger-soft);
+}
+
+.high-spending::before {
+    background: var(--clr-danger) !important;
+}
+
+.high-spending p:first-of-type {
+    color: var(--clr-danger) !important;
+}
+
+/* ── 14. Chart section ── */
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.chart-wrapper canvas {
+    max-width: 320px;
+    max-height: 320px;
+}
+
+/* ── 15. Dark mode overrides ── */
+body.dark .balance-card {
+    background: linear-gradient(135deg, #3730a3 0%, #4f46e5 50%, #0891b2 100%);
+}
+
+body.dark .form-section input,
+body.dark .form-section select {
+    color: var(--clr-text);
+    background: var(--clr-surface-2);
+    border-color: var(--clr-border);
+}
+
+body.dark .form-section input:focus,
+body.dark .form-section select:focus {
+    background: var(--clr-surface);
+}
+
+body.dark .theme-toggle {
+    background: var(--clr-surface);
+    border-color: var(--clr-border);
+}
+
+body.dark .transaction-item {
+    background: var(--clr-surface-2);
+    border-color: var(--clr-border);
+}
+
+body.dark .high-spending {
+    background: var(--clr-danger-soft);
+}
+
+body.dark .btn--ghost {
+    border-color: var(--clr-border);
+    color: var(--clr-text-muted);
+}
+
+/* ── 16. Responsive ── */
+
+/* Tablet */
+@media (max-width: 860px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-wrapper canvas {
+        max-width: 260px;
+        max-height: 260px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+    body {
+        padding: 16px 12px 48px;
+    }
+
+    .top-bar {
+        margin-bottom: 28px;
+    }
+
+    .balance-card {
+        padding: 28px 24px;
+    }
+
+    .form-section {
+        padding: 20px 16px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .input-group,
+    .input-group--action {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .transaction-section,
+    .chart-section {
+        padding: 18px 16px;
+    }
+
+    .chart-wrapper canvas {
+        max-width: 220px;
+        max-height: 220px;
+    }
+
+    .theme-toggle__label {
+        display: none;
+    }
+}
+
+/* ── 17. Focus-visible accessibility ring ── */
+:focus-visible {
+    outline: 2px solid var(--clr-primary);
+    outline-offset: 3px;
+    border-radius: var(--r-sm);
+}
+
+/* ── 18. Smooth colour transitions everywhere ── */
+.transaction-section,
+.chart-section,
+.form-section,
+.balance-card,
+.top-bar,
+.theme-toggle {
+    transition:
+        background-color var(--tr-normal),
+        border-color var(--tr-normal),
+        box-shadow var(--tr-normal);
+}
